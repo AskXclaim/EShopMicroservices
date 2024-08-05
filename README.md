@@ -1,2 +1,2 @@
 # ecommerce
-Micro serviced architecture ecommerce 
+Micro-serviced architecture eCommerce 
