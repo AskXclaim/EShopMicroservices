@@ -2,6 +2,14 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.API", "Services\Catalog\Catalog.API\Catalog.API.csproj", "{8859D797-D4DB-4C34-A66A-D4B482F2146E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks", "BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj", "{E65C05E9-17DE-4C57-A091-4F08605E5329}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8C05F02C-039D-4788-9EBF-FB68429EB670}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		docker-compose.override.yml = docker-compose.override.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +20,9 @@ Global
 		{8859D797-D4DB-4C34-A66A-D4B482F2146E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8859D797-D4DB-4C34-A66A-D4B482F2146E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8859D797-D4DB-4C34-A66A-D4B482F2146E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E65C05E9-17DE-4C57-A091-4F08605E5329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65C05E9-17DE-4C57-A091-4F08605E5329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E65C05E9-17DE-4C57-A091-4F08605E5329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65C05E9-17DE-4C57-A091-4F08605E5329}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
