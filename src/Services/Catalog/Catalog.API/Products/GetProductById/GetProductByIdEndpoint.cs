@@ -8,14 +8,15 @@ public class GetProductByIdEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/Products/{id:guid}", async (Guid id, ISender sender) =>
-            {
-                var result = await sender.Send(new GetProductByIdQuery(id));
-                var response = result.Adapt<GetProductByIdResponse>();
-                var apiResponse = ApiResponseFactory.GetSuccessfullyCreatedResponse(response);
+        app.MapGet($"/{Constants.Constants.ApiProductRoute}" + "/{id:guid}",
+                async (Guid id, ISender sender) =>
+                {
+                    var result = await sender.Send(new GetProductByIdQuery(id));
+                    var response = result.Adapt<GetProductByIdResponse>();
+                    var apiResponse = ApiResponseFactory.GetOkResponse(response);
 
-                return Results.Ok(apiResponse);
-            })
+                    return Results.Ok(apiResponse);
+                })
             .WithName($"{nameof(GetProductByIdEndpoint).Replace("Endpoint", "")}")
             .Produces<ApiResponse>()
             .ProducesProblem(StatusCodes.Status400BadRequest)

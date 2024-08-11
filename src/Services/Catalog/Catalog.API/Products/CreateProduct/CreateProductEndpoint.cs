@@ -28,7 +28,8 @@ public class CreateProductEndpoint : ICarterModule
                         var response = result.Adapt<CreateProductResponse>();
                         _apiResponse = ApiResponseFactory.GetSuccessfullyCreatedResponse(response);
 
-                        return Results.Created($"/products/{response.Id}", _apiResponse);
+                        return Results.Created($"/{Constants.Constants.ApiProductRoute}/"
+                                               + $"{response.Id}", _apiResponse);
                     }
                     catch (Exception e)
                     {

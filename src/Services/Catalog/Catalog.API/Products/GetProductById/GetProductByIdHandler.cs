@@ -1,5 +1,3 @@
-using Catalog.API.Exceptions;
-
 namespace Catalog.API.Products.GetProductById;
 
 internal record GetProductByIdQuery(Guid Id) : IQuery<GetProductByIdResult>;
@@ -13,8 +11,6 @@ internal class GetProductByIdQueryHandler(IDocumentSession session, ILogger<GetP
     {
         logger.LogInformation(LoggerInformationFactory.GetHandlerCalledTextToLog(nameof(GetProductByIdQueryHandler),
             nameof(Handle), query));
-        // logger.LogInformation($"{nameof(GetProductByIdQueryHandler)}." +
-        //                       $"{nameof(Handle)} called with {query}");
 
         var product = await session.LoadAsync<Product>(query.Id, cancellationToken);
 
