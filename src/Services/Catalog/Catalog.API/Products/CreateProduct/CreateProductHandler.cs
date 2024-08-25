@@ -10,7 +10,7 @@ internal record CreateProductCommand(
 
 internal record CreateProductResult(Guid Id);
 
-internal class CreateProductCommandHandler(IDocumentSession session, IValidator<CreateProductCommand> validator)
+internal class CreateProductCommandHandler(IDocumentSession session)
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)

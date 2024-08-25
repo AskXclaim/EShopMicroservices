@@ -8,7 +8,7 @@ public class DeleteProductEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapDelete($"/{Constants.Constants.ApiProductRoute}" + "/{id:guid}",
+        app.MapDelete($"/{Constants.Constants.ApiProductRoute}" + "/{id}",
                 async (Guid id, ISender sender) =>
                 {
                     var result = await sender.Send(new DeleteProductCommand(id));
@@ -23,6 +23,5 @@ public class DeleteProductEndpoint : ICarterModule
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Delete Product")
             .WithDescription("Delete Product");
-        ;
     }
 }
