@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.override.yml = docker-compose.override.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket.API", "Services\Basket\Basket.API\Basket.API.csproj", "{367B5455-E4BE-4AA7-8B2D-C5656E73A598}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,11 @@ Global
 		{E65C05E9-17DE-4C57-A091-4F08605E5329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E65C05E9-17DE-4C57-A091-4F08605E5329}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E65C05E9-17DE-4C57-A091-4F08605E5329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{367B5455-E4BE-4AA7-8B2D-C5656E73A598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{367B5455-E4BE-4AA7-8B2D-C5656E73A598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{367B5455-E4BE-4AA7-8B2D-C5656E73A598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{367B5455-E4BE-4AA7-8B2D-C5656E73A598}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal
