@@ -4,7 +4,7 @@ internal record GetBasketResult(ShoppingCart Cart);
 internal record GetBasketQuery(string UserName) : IQuery<GetBasketResult>;
 
 
-internal class GetBasketHandler : IQueryHandler<GetBasketQuery, GetBasketResult>
+internal class GetBasketQueryHandler : IQueryHandler<GetBasketQuery, GetBasketResult>
 {
     public async Task<GetBasketResult> Handle(GetBasketQuery query, CancellationToken cancellationToken)
     {
