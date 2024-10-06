@@ -20,7 +20,7 @@ internal class UpdateProductCommandHandler(IDocumentSession session, ILogger<Upd
             nameof(Handle), command));
 
         var productToUpdate = await session.LoadAsync<Product>(command.Id, cancellationToken);
-        if (productToUpdate is null) throw new ProductNotFound();
+        if (productToUpdate is null) throw new ProductNotFoundException();
 
         command.Adapt(productToUpdate);
 
