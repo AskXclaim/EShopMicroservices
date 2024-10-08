@@ -1,8 +1,3 @@
-using BuildingBlocks.Exceptions.Handler;
-using Catalog.API.Data;
-using Polly;
-using Polly.Registry;
-using Polly.Retry;
 using CarterModule = BuildingBlocks.Utilities.CarterModule;
 
 const string databaseConnectionStringName = "Database";
@@ -42,10 +37,18 @@ if (builder.Environment.IsDevelopment())
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
+builder.Services.AddHealthChecks()
+    .AddNpgSql(builder.Configuration.GetConnectionString(databaseConnectionStringName)!);
+
 var app = builder.Build();
 
 //configure http request pipeline
 app.MapCarter();
+app.UseExceptionHandler(options => { });
+app.UseHealthChecks($"/{Constants.CategoryApiHealthCheckRoute}", new HealthCheckOptions()
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 await app.RunAsync();
 
