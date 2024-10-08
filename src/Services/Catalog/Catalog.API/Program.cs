@@ -6,7 +6,7 @@ using Polly.Retry;
 using CarterModule = BuildingBlocks.Utilities.CarterModule;
 
 const string databaseConnectionStringName = "Database";
-const string DevelopmentDbInitializationRetry = "Development_Db_Initialization_Retry";
+const string developmentDbInitializationRetry = "Development_Db_Initialization_Retry";
 
 var builder = WebApplication.CreateBuilder(args);
 //Add service to container
@@ -28,10 +28,10 @@ builder.Services.AddMarten(option =>
 
 if (builder.Environment.IsDevelopment())
 {
-    AddDevelopmentDbInitializationRetryStrategy(builder, DevelopmentDbInitializationRetry);
+    AddDevelopmentDbInitializationRetryStrategy(builder, developmentDbInitializationRetry);
     await using var provider = builder.Services.BuildServiceProvider();
     var pipelineProvider = provider.GetRequiredService<ResiliencePipelineProvider<string>>();
-    var pipeline = pipelineProvider.GetPipeline(DevelopmentDbInitializationRetry);
+    var pipeline = pipelineProvider.GetPipeline(developmentDbInitializationRetry);
     await pipeline.ExecuteAsync(_ =>
     {
         builder.Services.InitializeMartenWith<CatalogInitialData>();
@@ -50,11 +50,11 @@ app.MapCarter();
 await app.RunAsync();
 
 void AddDevelopmentDbInitializationRetryStrategy(WebApplicationBuilder webApplicationBuilder,
-    string developmentDbInitializationRetry)
+    string pipelineName)
 {
-    webApplicationBuilder.Services.AddResiliencePipeline(developmentDbInitializationRetry, builder =>
+    webApplicationBuilder.Services.AddResiliencePipeline(pipelineName, pipelineBuilder =>
     {
-        builder.AddRetry(new RetryStrategyOptions()
+        pipelineBuilder.AddRetry(new RetryStrategyOptions()
         {
             ShouldHandle = new PredicateBuilder().Handle<Exception>(),
             BackoffType = DelayBackoffType.Exponential,
