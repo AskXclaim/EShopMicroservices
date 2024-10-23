@@ -33,6 +33,8 @@ if (builder.Environment.IsDevelopment())
 
         return ValueTask.CompletedTask;
     });
+
+    //builder.Services.InitializeMartenWith<CatalogInitialData>();
 }
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
