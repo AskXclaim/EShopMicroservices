@@ -1,3 +1,6 @@
+using Basket.API.Data;
+using Basket.API.Data.Interfaces;
+
 namespace Basket.API.DeleteBasket;
 
 internal record DeleteBasketResult(bool IsSuccess);
@@ -13,10 +16,12 @@ internal class DeleteBasketCommandValidator : AbstractValidator<DeleteBasketComm
     }
 }
 
-internal class DeleteBasketCommandHandler : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
+internal class DeleteBasketCommandHandler(IBasketRepository repository)
+    : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
 {
     public async Task<DeleteBasketResult> Handle(DeleteBasketCommand command, CancellationToken cancellationToken)
     {
-        return new DeleteBasketResult(true);
+        var isDeleted = await repository.DeleteBasket(command.UserName, cancellationToken);
+        return new DeleteBasketResult(isDeleted);
     }
 }

@@ -10,7 +10,6 @@ services:
       - "5432:5432"
     volumes:
       - postgres_catalog:/var/lib/postgresql/data/
-
   catalog.api:
     container_name: catalog.api
     environment:
@@ -41,3 +40,9 @@ services:
       - "5433:5432"
     volumes:
       - postgres_basket:/var/lib/postgresql/data/
+  
+  distributedCache:
+    container_name: distributedcache
+    restart: always
+    ports:
+      - "6379:6379"

@@ -1,3 +1,6 @@
+using Basket.API.Data;
+using Basket.API.Data.Interfaces;
+
 namespace Basket.API.StoreBasket;
 
 internal record StoreBasketResult(string UserName);
@@ -14,11 +17,12 @@ internal class StoreBasketCommandValidator : AbstractValidator<StoreBasketComman
     }
 }
 
-internal class StoreBasketCommandHandler : ICommandHandler<StoreBasketCommand, StoreBasketResult>
+internal class StoreBasketCommandHandler(IBasketRepository repository)
+    : ICommandHandler<StoreBasketCommand, StoreBasketResult>
 {
     public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
     {
-        var cart = command.Cart;
-        return new StoreBasketResult("developing-test");
+        var shoppingCart = await repository.StoreBasket(command.Cart, cancellationToken);
+        return new StoreBasketResult(shoppingCart.UserName);
     }
 }

@@ -1,4 +1,6 @@
-namespace Basket.API.Data;
+using Basket.API.Data.Interfaces;
+
+namespace Basket.API.Data.Instances;
 
 public class BasketRepository(IDocumentSession documentSession) : IBasketRepository
 {
