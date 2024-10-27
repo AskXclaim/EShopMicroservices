@@ -10,7 +10,8 @@ public class StoreBasketEndpoints : ICarterModule
     {
         app.MapPost($"/{Constants.Constants.Basket}", async (StoreBasketRequest request, ISender sender) =>
             {
-                var result = await sender.Send(request);
+                var command = request.Adapt<StoreBasketCommand>();
+                var result = await sender.Send(command);
                 var response = result.Adapt<StoreBasketResponse>();
 
                 return Results.Created($"/{Constants.Constants.Basket}/{response.UserName}", response);
