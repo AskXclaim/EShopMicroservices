@@ -1,11 +1,11 @@
-const string Database = "Database";
+const string database = "Database";
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddGrpc();
 builder.Services.AddDbContext<DiscountContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString(Database)));
+    options.UseSqlite(builder.Configuration.GetConnectionString(database)));
 
 var app = builder.Build();
 
